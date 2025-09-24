@@ -4,6 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
+type StartupTypeCard = {
+    _createdAt: string;
+    views: number;
+    author: { _id: number; name: string };
+    _id: number;
+    description: string;
+    image: string;
+    category: string;
+    title: string;
+  }
+
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   const {
     _createdAt,

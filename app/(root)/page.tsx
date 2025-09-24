@@ -3,7 +3,7 @@ import StartupCard from "@/components/StartupCard";
 
 type PostsType = [
   {
-    _createdAt: Date;
+    _createdAt: string;
     views: number;
     author: { _id: number; name: string };
     _id: number;
@@ -14,6 +14,17 @@ type PostsType = [
   }
 ];
 
+type StartupTypeCard = {
+  _createdAt: string;
+  views: number;
+  author: { _id: number; name: string };
+  _id: number;
+  description: string;
+  image: string;
+  category: string;
+  title: string;
+};
+
 export default async function page({
   searchParams,
 }: {
@@ -22,7 +33,7 @@ export default async function page({
   const query = (await searchParams).query;
   const posts: PostsType = [
     {
-      _createdAt: new Date(),
+      _createdAt: `${new Date()}`,
       views: 55,
       author: { _id: 1, name: "Greatness" },
       _id: 1,
