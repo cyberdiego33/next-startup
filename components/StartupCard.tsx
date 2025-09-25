@@ -3,24 +3,26 @@ import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { Author, Startup } from "@/sanity/types";
 
-type StartupTypeCard = {
-    _createdAt: string;
-    views: number;
-    author: { _id: number; name: string };
-    _id: number;
-    description: string;
-    image: string;
-    category: string;
-    title: string;
-  }
+export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
+// {
+//     _createdAt: string;
+//     views: number;
+//     author: { _id: number; name: string };
+//     _id: number;
+//     description: string;
+//     image: string;
+//     category: string;
+//     title: string;
+//   }
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   const {
     _createdAt,
     _id,
     views,
-    author: { _id: authorId, name },
+    author,
     description,
     image,
     category,
@@ -38,14 +40,14 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
 
       <div className="flex-between mt-5 gap-5">
         <div className="flex-1">
-          <Link href={`/user/${authorId}`}>
-            <p className="text-16-medium line-clamp-1">{name}</p>
+          <Link href={`/user/${author?.id}`}>
+            <p className="text-16-medium line-clamp-1">{author?.name}</p>
           </Link>
           <Link href={`/startup/${_id}`}>
             <h3 className="text-26-semibold line-clamp-1">{title}</h3>
           </Link>
         </div>
-        <Link href={`/user/${authorId}`}>
+        <Link href={`/user/${author?.id}`}>
           <img
             src={image}
             alt="placeholder"
@@ -62,7 +64,7 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
       </Link>
 
       <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${category.toLowerCase()}`}>
+        <Link href={`/?query=${category?.toLowerCase()}`}>
           <p className="text-16-medium">{category}</p>
         </Link>
         <Button className="startup-card_btn" asChild>

@@ -1,29 +1,7 @@
 import Searchform from "@/components/searchform";
-import StartupCard from "@/components/StartupCard";
-
-type PostsType = [
-  {
-    _createdAt: string;
-    views: number;
-    author: { _id: number; name: string };
-    _id: number;
-    description: string;
-    image: string;
-    category: string;
-    title: string;
-  }
-];
-
-type StartupTypeCard = {
-  _createdAt: string;
-  views: number;
-  author: { _id: number; name: string };
-  _id: number;
-  description: string;
-  image: string;
-  category: string;
-  title: string;
-};
+import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 
 export default async function page({
   searchParams,
@@ -31,19 +9,11 @@ export default async function page({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  const posts: PostsType = [
-    {
-      _createdAt: `${new Date()}`,
-      views: 55,
-      author: { _id: 1, name: "Greatness" },
-      _id: 1,
-      description: "Landing page startup",
-      image:
-        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      category: "Animations",
-      title: "Hero Sections",
-    },
-  ];
+  const params = {search: query || null} 
+  const {data: posts} = await sanityFetch({query: STARTUPS_QUERY, params})
+
+  // console.log(JSON.stringify(posts, null, 2));
+
   return (
     <>
       {/* Hero Section  */}
@@ -73,6 +43,8 @@ export default async function page({
           )}
         </ul>
       </section>
+
+      <SanityLive />
     </>
   );
 }
