@@ -9,8 +9,8 @@ export default async function page({
   searchParams: Promise<{ query?: string }>;
 }) {
   const query = (await searchParams).query;
-  const params = {search: query || null} 
-  const {data: posts} = await sanityFetch({query: STARTUPS_QUERY, params})
+  const params = { search: query || null };
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
   // console.log(JSON.stringify(posts, null, 2));
 
@@ -19,7 +19,7 @@ export default async function page({
       {/* Hero Section  */}
       <section className="pink-container pattern">
         <h1 className="text-2xl heading">
-          Pitch Your Startup, <br /> Connect with Entrepreneurs
+          Pitch Your Startup, <br /> Connect with Entrepreneursssss
         </h1>
 
         <p className="sub-heading !max-w-3xl">
