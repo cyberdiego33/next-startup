@@ -1,8 +1,7 @@
-import React from "react";
 import Link from "next/link";
 import { auth } from "@/auth";
 import { loginWithGithub, logout } from "@/app/actions/auth";
-
+import Form from "next/form";
 const Navbar = async () => {
   const session = await auth();
 
@@ -19,19 +18,19 @@ const Navbar = async () => {
               <Link href="/startup/create" className="hover:cursor-pointer">
                 Create
               </Link>
-              <form action={logout}>
+              <Form action={logout}>
                 <button type="submit" className="hover:cursor-pointer">
                   Logout
                 </button>
-              </form>
+              </Form>
               <Link href={`/user/${session.user.id}`}>{session.user.name}</Link>
             </>
           ) : (
-            <form action={loginWithGithub}>
+            <Form action={loginWithGithub}>
               <button type="submit" className="hover:cursor-pointer">
                 Login
               </button>
-            </form>
+            </Form>
           )}
         </div>
       </nav>
