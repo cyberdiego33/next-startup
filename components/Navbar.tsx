@@ -23,7 +23,7 @@ const Navbar = async () => {
                   Logout
                 </button>
               </Form>
-              <Link href={`/user/${session.user.id}`}>{session.user.name}</Link>
+              <Link href={`/user/${session.id}`}>{session.user.name}</Link>
             </>
           ) : (
             <Form action={loginWithGithub}>
