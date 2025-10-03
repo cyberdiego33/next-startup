@@ -2,9 +2,10 @@ import { auth } from "@/auth";
 import { client } from "@/sanity/lib/client";
 import { AUTHOR_BY_ID_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-import React from "react";
 import Image from "next/image";
 import UserStartups from "@/components/UserStartups";
+import React, { Suspense } from "react";
+import { StartupCardSkeleton } from "@/components/StartupCard";
 
 export const experimental_ppr = true;
 
@@ -42,7 +43,9 @@ const page = async function ({ params }: { params: Promise<{ id: string }> }) {
             {session?.id === id ? "Your" : "All"} Startups
           </p>
           <ul className="card_grid-sm">
-            <UserStartups />
+            <Suspense fallback={<StartupCardSkeleton />}>
+              <UserStartups id={id} />
+            </Suspense>
           </ul>
         </div>
       </section>

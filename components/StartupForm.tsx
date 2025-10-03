@@ -28,16 +28,16 @@ function StartupForm() {
       };
 
       await formSchema.parseAsync(formValues);
-      console.log(
-        "------------------------- These are the form values -------------------------"
-      );
-      console.log(formValues);
+      // console.log(
+      //   "------------------------- These are the form values -------------------------"
+      // );
+      // console.log(formValues);
 
       const result = await CreatePitch(prevState, formData, pitch);
-      console.log(
-        "----------------- Result from creat pitch ----------------------"
-      );
-      console.log(result);
+      // console.log(
+      //   "----------------- Result from creat pitch ----------------------"
+      // );
+      // console.log(result);
       if (result.status === "SUCCESS") {
         console.log("Successfully created");
         toast.success("Success", {
@@ -60,7 +60,6 @@ function StartupForm() {
         return { ...prevState, error: "Validation failed", status: "ERROR" };
       }
 
-      console.log(error);
       toast.error("Error", {
         description: "An unexpected error has occurred",
       });
@@ -73,10 +72,11 @@ function StartupForm() {
     }
   };
 
-  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+  const [, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",
   });
+
 
   return (
     <form action={formAction} className="startup-form">
