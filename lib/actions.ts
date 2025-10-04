@@ -30,7 +30,7 @@ export const CreatePitch = async function (
       category,
       image: link,
       slug: {
-        _type: slug,
+        _type: "slug",
         current: slug,
       },
       author: {
