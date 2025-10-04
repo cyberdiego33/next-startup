@@ -23,9 +23,9 @@ export default async function page({
   return (
     <>
       {/* Hero Section  */}
-      <section className="pink-container pattern">
-        <h1 className="text-2xl heading">
-          Pitch Your Startup, <br /> Connect with Entrepreneursssss
+      <section className="pink-container pattern overflow-x-hidden">
+        <h1 className="text-xl heading">
+          Pitch Your Startup, <br /> Connect with Entrepreneurs
         </h1>
 
         <p className="sub-heading !max-w-3xl">
